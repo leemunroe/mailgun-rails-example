@@ -1,0 +1,31 @@
+<h1>Send a message with Mailgun</h1>
+<% flash.each do |key, value| %>
+  <div class="alert alert-success"><%= value %></div>
+<% end %>
+
+<%= form_tag(:action => 'create')%>
+
+<p>What method do you want to use?</p>
+<div class="radio">
+<%= label_tag do %>
+  <%= radio_button_tag(:mode, "SMTP") %> SMTP
+<% end %>
+</div>
+
+<div class="radio">
+<%= label_tag do %>
+  <%= radio_button_tag(:mode, "API", true) %> API
+<% end %>
+</div>
+
+<div class="form-group">
+  <%= label_tag(:to, "Recipient's email address") %>
+  <%= email_field_tag :to, "", class: "form-control" %>
+</div>
+
+<div class="form-group">
+  <%= label_tag(:body, "Message") %>
+  <%= text_area_tag :body, "", class: "form-control" %>
+</div>
+
+<%= submit_tag("Send", :class => "btn btn-primary") %>
